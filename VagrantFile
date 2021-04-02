@@ -1,0 +1,3 @@
+BOX_IMAGE = 'bento/ubuntu-16.04'
+NODE_COUNT = 1
+
