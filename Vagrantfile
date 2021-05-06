@@ -1,8 +1,8 @@
-BOX_IMAGE = 'bento/ubuntu-16.04'
+BOX_IMAGE = 'bento/ubuntu-20.04'
 #NODE_COUNT = 2
 Vagrant.configure("2") do |config|
 config.vm.define "ulitka.local" do |subconfig|
-  config.vm.box = "bento/ubuntu-16.04"
+  config.vm.box = "bento/ubuntu-20.04"
   config.vm.hostname = "ulitka"
   config.vm.network :private_network, ip: "192.168.31.249"
   config.vm.provider :virtualbox do |vb|
@@ -10,12 +10,13 @@ config.vm.define "ulitka.local" do |subconfig|
          vb.memory = "2000"
 	 vb.gui = true
    end
-#  id_rsa_pub = File.read("#{Dir.home}/.ssh/id_rsa.pub")
+  id_rsa_pub = File.read("#{Dir.home}/.ssh/id_rsa.pub")
    config.vm.provision "shell", inline: <<-SHELL
      SHELL
+   subconfig.vm.provision "file", source: "/home/ulitka/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
   end
 config.vm.define "ulitka1.local" do |subconfig|
-  config.vm.box = "bento/ubuntu-16.04"
+  config.vm.box = "bento/ubuntu-20.04"
   config.vm.hostname = "ulitka1"
   config.vm.network :private_network, ip: "192.168.31.250"
   config.vm.provider :virtualbox do |vb|
@@ -23,13 +24,14 @@ config.vm.define "ulitka1.local" do |subconfig|
          vb.memory = "2000"
 	 vb.gui = true
     end
-#  id_rsa_pub = File.read("#{Dir.home}/.ssh/id_rsa.pub")
+  id_rsa_pub = File.read("#{Dir.home}/.ssh/id_rsa.pub")
   config.vm.provision "shell", inline: <<-SHELL
    SHELL
+   subconfig.vm.provision "file", source: "/home/ulitka/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
    end
 
 config.vm.define "ulitka2.local" do |subconfig|
-config.vm.box = "bento/ubuntu-16.04"
+config.vm.box = "bento/ubuntu-20.04"
   config.vm.hostname = "ulitka2"
   config.vm.network :private_network, ip: "192.168.31.251"
   config.vm.provider :virtualbox do |vb|
@@ -37,9 +39,10 @@ config.vm.box = "bento/ubuntu-16.04"
          vb.memory = "2000"
 	 vb.gui = true
     end
-#  id_rsa_pub = File.read("#{Dir.home}/.ssh/id_rsa.pub")
+  id_rsa_pub = File.read("#{Dir.home}/.ssh/id_rsa.pub")
   config.vm.provision "shell", inline: <<-SHELL
    SHELL
+   subconfig.vm.provision "file", source: "/home/ulitka/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
    end
  end
 
