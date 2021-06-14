@@ -28,7 +28,6 @@ Vagrant.configure("2") do |config|
       sudo apt-get install puppet-agent -y
       echo '[main]' >> /etc/puppetlabs/puppet/puppet.conf
       echo 'certname = ulitka1' >> /etc/puppetlabs/puppet/puppet.conf
-      echo 'certname = ulitka2' >> /etc/puppetlabs/puppet/puppet.conf
       echo 'server = ulitka' >> /etc/puppetlabs/puppet/puppet.conf
       echo 'runinterval = 150' >> /etc/puppetlabs/puppet/puppet.conf
       sudo systemctl start puppet
@@ -67,10 +66,9 @@ config.vm.define "ulitka2" do |subconfig|
       sudo apt-get update -y
       sudo apt-get install puppet-agent -y
       echo '[main]' >> /etc/puppetlabs/puppet/puppet.conf
-      echo 'certname = ulitka1' >> /etc/puppetlabs/puppet/puppet.conf
       echo 'certname = ulitka2' >> /etc/puppetlabs/puppet/puppet.conf
       echo 'server = ulitka' >> /etc/puppetlabs/puppet/puppet.conf
-      echo 'runinterval = 150' >> /etc/puppetlabs/puppet/puppet.conf
+      echo 'runinterval = 140' >> /etc/puppetlabs/puppet/puppet.conf
       sudo systemctl start puppet
       sudo systemctl enable puppet
  #    systemctl status puppet
@@ -112,12 +110,12 @@ config.vm.define "ulitka2" do |subconfig|
      sed -i 's/.*JAVA_ARGS.*/JAVA_ARGS="-Xms512m -Xmx512m -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger"/' /etc/default/puppetserver
      echo '[main]' >> /etc/puppetlabs/puppet/puppet.conf
      echo 'certname = ulitka' >> /etc/puppetlabs/puppet/puppet.conf
-     echo 'certname = ulitka' >> /etc/puppetlabs/puppet/puppet.conf
+#    echo 'certname = ulitka' >> /etc/puppetlabs/puppet/puppet.conf
      echo 'server = ulitka' >> /etc/puppetlabs/puppet/puppet.conf
      sudo systemctl start puppetserver
      sudo systemctl enable puppetserver
 #    systemctl status puppetserver
-     sleep 120 
+     sleep 100 
      sudo /opt/puppetlabs/bin/puppet module install puppetlabs-apt -v 4.2.0
      sudo /opt/puppetlabs/bin/puppet module install puppetlabs-stdlib --version 4.21.0
      sudo /opt/puppetlabs/bin/puppetserver ca list --all
