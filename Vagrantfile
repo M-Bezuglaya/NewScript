@@ -16,6 +16,7 @@ Vagrant.configure("2") do |config|
    end
       subconfig.vm.provision "file", source: "/home/ulitka/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
  #    id_rsa_pub = File.read("#{Dir.home}/.ssh/id_rsa.pub")
+      subconfig.vm.provision "file", source: "/home/ulitka/NewScript/HelloWorld-1.0.jar", destination: "/home/vagrant/HelloWorld-1.0.jar"
       subconfig.vm.provision "shell", inline: <<-SHELL
       echo '[main]' >> /etc/hosts
       echo '192.168.31.249 ulitka puppet' >> /etc/hosts
@@ -55,6 +56,7 @@ config.vm.define "ulitka2" do |subconfig|
    end
       subconfig.vm.provision "file", source: "/home/ulitka/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
  #    id_rsa_pub = File.read("#{Dir.home}/.ssh/id_rsa.pub")
+      subconfig.vm.provision "file", source: "/home/ulitka/NewScript/HelloWorld-1.0.jar", destination: "/home/vagrant/HelloWorld-1.0.jar"
       subconfig.vm.provision "shell", inline: <<-SHELL
       echo '[main]' >> /etc/hosts
       echo '192.168.31.249 ulitka puppet' >> /etc/hosts
@@ -95,6 +97,7 @@ config.vm.define "ulitka2" do |subconfig|
    end
      subconfig.vm.provision "file", source: "/home/ulitka/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
  #   id_rsa_pub = File.read("#{Dir.home}/.ssh/id_rsa.pub")
+     subconfig.vm.provision "file", source: "/home/ulitka/NewScript/HelloWorld-1.0.jar", destination: "/home/vagrant/HelloWorld-1.0.jar"
      subconfig.vm.provision "shell", inline: <<-SHELL
      echo '[main]' >> /etc/hosts
      echo '192.168.31.249 ulitka puppet' >> /etc/hosts
